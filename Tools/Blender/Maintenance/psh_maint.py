@@ -1,8 +1,7 @@
 """
 psh_maint.py - extra helpers for the maintenance and mobile equipment scripts.
 
-Builds on psh_build.py (copied unchanged from Tools/Blender/ on the slag handling branch so this
-folder runs on its own). Adds wheels, crawler tracks, hydraulic cylinders, parenting, and one
+Builds on the shared Tools/Blender/psh_build.py (the build scripts put it on sys.path). Adds wheels, crawler tracks, hydraulic cylinders, parenting, and one
 call that saves, exports and renders a finished asset.
 
 Every script in this folder runs headless:

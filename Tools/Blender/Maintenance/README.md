@@ -23,8 +23,7 @@ A run with asset names after `--` rebuilds only those assets and leaves the fold
 
 ## Helpers
 
-- `psh_build.py` is a copy of `Tools/Blender/psh_build.py` from the slag handling branch, unchanged,
-  so this folder runs on its own. If both copies end up on main, either can be kept.
+- The scripts import the shared `Tools/Blender/psh_build.py` (one level up).
 - `psh_maint.py` adds wheels, crawler tracks with panner UVs, hydraulic cylinder look-at pairs,
   stairs and guardrails, and `finish_asset` (save, export, render) plus the README writer.
 

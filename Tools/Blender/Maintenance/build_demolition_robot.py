@@ -11,6 +11,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))  # shared psh_build.py
 import psh_build as pb  # noqa: E402
 import psh_maint as pm  # noqa: E402
 
