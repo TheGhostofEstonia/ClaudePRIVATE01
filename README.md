@@ -1,7 +1,12 @@
 # Project Safe Haven assets
 
-Meshes for the PSH Unreal project. Each asset folder under `Meshes/` holds the `.blend`, the `.fbx`
-for Unreal, preview renders and a README with dimensions, pivots and connection points.
+Meshes for the PSH Unreal project. Each asset folder under `Meshes/` holds the `.fbx` for Unreal,
+preview renders and a README with dimensions, pivots and connection points.
+
+The `.blend` scenes are not kept in the repository (`Meshes/**/*.blend` is gitignored). The build
+scripts in `Tools/Blender/` still write `SM_<Name>.blend` next to the `.fbx` when run, so any scene
+can be regenerated locally. Where an asset README mentions the `.blend` (REF collection, parenting),
+it refers to that regenerated file.
 Build scripts for assets made in the cloud environment are in `Tools/Blender/`.
 
 All build scripts import the shared helper module `Tools/Blender/psh_build.py`. Scripts for one
