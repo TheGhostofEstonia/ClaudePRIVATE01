@@ -1,7 +1,7 @@
 """
 acm_common.py - shared pieces for the anode/cathode machine build scripts.
 
-Imports psh_build (copied from the slag-handling branch) and adds:
+Imports the shared Tools/Blender/psh_build.py and adds:
   - electrode sizes (one place to change them for all five machines)
   - anode, permanent cathode and copper sheet geometry
   - chain strands with continuous UVs and separate sprockets
@@ -21,6 +21,7 @@ import sys
 from mathutils import Vector
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))  # shared psh_build.py
 import psh_build as pb  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))

@@ -18,6 +18,7 @@ import sys
 import bpy
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))  # shared psh_build.py
 import acm_common as ac  # noqa: E402
 from acm_common import pb  # noqa: E402
 
