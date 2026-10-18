@@ -132,9 +132,18 @@ def pipe_run(p, pts, r, m, elbow=True):
             p.sphere(r * 1.05, q, m, seg=12)
 
 
-def platform(p, x0, y0, x1, y1, z, mats, rails='NSEW', posts=True, post_step=4.0):
-    """Grated deck on columns with handrails on the named sides (N=+y, S=-y, E=+x, W=-x)."""
-    p.box_mm((x0, y0, z - 0.05), (x1, y1, z), mats['grate'])
+def platform(p, x0, y0, x1, y1, z, mats, rails='NSEW', posts=True, post_step=4.0, hole=None):
+    """
+    Grated deck on columns with handrails on the named sides (N=+y, S=-y, E=+x, W=-x).
+    hole: optional (hx0, hy0, hx1, hy1) opening left in the deck for a vessel passing through.
+    """
+    if hole is None:
+        p.box_mm((x0, y0, z - 0.05), (x1, y1, z), mats['grate'])
+    else:
+        hx0, hy0, hx1, hy1 = hole
+        for a, b in (((x0, y0), (hx0, y1)), ((hx1, y0), (x1, y1)),
+                     ((hx0, y0), (hx1, hy0)), ((hx0, hy1), (hx1, y1))):
+            p.box_mm((a[0], a[1], z - 0.05), (b[0], b[1], z), mats['grate'])
     for (xa, ya, xb, yb) in ((x0, y0, x1, y0), (x0, y1, x1, y1)):
         p.beam_between((xa, ya, z - 0.2), (xb, yb, z - 0.2), 0.15, 0.3, mats['steel'])
     if posts:
