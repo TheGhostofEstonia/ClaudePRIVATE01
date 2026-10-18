@@ -1,8 +1,7 @@
 """
 wsl_common.py - helpers shared by the workshop, safety equipment and laboratory build scripts.
 
-Builds on psh_build.py (a copy of the project helper module, kept in this folder so these
-scripts do not depend on another branch). Adds:
+Builds on the shared Tools/Blender/psh_build.py (the build scripts put it on sys.path). Adds:
   - F: a local frame (origin + yaw) so equipment can be written in its own coordinates
   - building shell pieces: walls with openings, steel columns, door leaves, roller shutters
   - furniture used in several buildings: benches, shelving, cabinets, fume hoods
