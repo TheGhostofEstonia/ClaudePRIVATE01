@@ -1,8 +1,8 @@
 """
 byp_helpers.py - extra sub-assemblies for the byproducts and rod line build scripts.
 
-Builds on psh_build.Part (world coordinates in metres). Kept separate from psh_build.py so the
-shared module stays identical to the copy on the slag handling branch.
+Builds on psh_build.Part (world coordinates in metres). Kept separate from the shared
+Tools/Blender/psh_build.py, which the build scripts put on sys.path before importing this.
 """
 import math
 
