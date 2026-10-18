@@ -1,0 +1,4 @@
+# Binary asset files: no text diffs or line-ending conversion
+*.blend binary
+*.fbx binary
+*.png binary
