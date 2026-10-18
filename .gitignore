@@ -1,2 +1,4 @@
 *.blend1
 __pycache__/
+# Blender scenes are not committed; the Tools/Blender build scripts regenerate them
+Meshes/**/*.blend
