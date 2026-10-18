@@ -24,14 +24,14 @@ ASSET, NAME = "AnodeScrapWasher", "SM_AnodeScrapWasher"
 # ---------------------------------------------------------------------------
 Z = ac.HANG_Z                 # lug seat height (same as the anode prep machine)
 CHAIN_Y = 0.56
-LUG_Y = 0.585
-WB_Y = 0.50
+LUG_Y = 0.60
+WB_Y = 0.525
 RECEIVE = (0.0, 6.0)          # crane drop zone
 WASH = (6.4, 11.4)            # wash chains inside the hood
 PICK, TILT = 11.9, 13.4       # walking-beam pick (end of wash) and tilter station
 LOAD = 45                     # scrap anodes per cell load
 SCRAP_H = ac.ANODE_H * 0.82   # spent anode body height (eaten from the bottom too)
-BODY_BOT = Z + ac.ANODE_LUG_H - 0.03 - SCRAP_H
+BODY_BOT = Z + ac.ANODE_LUG_H - SCRAP_H
 HINGE = (TILT + 0.03, 0.0, BODY_BOT - 0.02)   # tilter axis (along Y)
 STACK_Z = 0.45                # roller top of the stack conveyor
 STACK_N = 20                  # scrap anodes per forklift stack
@@ -163,6 +163,7 @@ anode slimes plant.
   Same seat height and lug span as SM_AnodePrepMachine.
 - Outfeed: stacks of {STACK_N} flat scrap anodes on the roller conveyor, roller top z = {STACK_Z} m,
   forklift pickup at the end stop x = {OUT_X + 0.2:.1f}. Stack width {ac.ANODE_LUG_SPAN} m across the lugs.
+- Tankhouse link: the crane carries a cell load between this machine and the tankhouse transfer stand AnodeScrapOut at (-22, -8) (tankhouse coordinates, seat z 1.20, electrodes stacked along Y, so this machine's X runs along the tankhouse Y there). See Meshes/Tankhouse/README.md.
 - Slimes pipe stub to the slimes plant at (11.1, -4.7, 3.6), pointing -Y.
 
 ## Moving parts
@@ -187,7 +188,7 @@ anode slimes plant.
 | Item | Value | Status |
 |---|---|---|
 | Scrap fraction | 13-20 % of the anode | Sourced (80-87 % consumed, BCcampus Aqueous Pathways) |
-| Scrap anode proxy | {ac.ANODE_W} x {SCRAP_H:.2f} x {ac.SCRAP_T} m body, full lugs (~80 kg) | Estimated |
+| Scrap anode proxy | {ac.ANODE_W} x {SCRAP_H:.2f} x {ac.SCRAP_T} m body, full lugs (~95 kg) | Estimated |
 | Cell load | {LOAD} anodes | Inside the sourced 30-50 range |
 | Stack of {STACK_N}, wash hood 4.6 m, settling tank Ø2.2 m | | Own design |
 

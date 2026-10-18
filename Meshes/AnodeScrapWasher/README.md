@@ -15,7 +15,8 @@ anode slimes plant.
 - Infeed: crane drop zone on the receiving chains, x 0 to 6, lug seat z = 1.60 m, chains at y = +-0.56.
   Same seat height and lug span as SM_AnodePrepMachine.
 - Outfeed: stacks of 20 flat scrap anodes on the roller conveyor, roller top z = 0.45 m,
-  forklift pickup at the end stop x = 21.7. Stack width 1.24 m across the lugs.
+  forklift pickup at the end stop x = 21.7. Stack width 1.32 m across the lugs.
+- Tankhouse link: the crane carries a cell load between this machine and the tankhouse transfer stand AnodeScrapOut at (-22, -8) (tankhouse coordinates, seat z 1.20, electrodes stacked along Y, so this machine's X runs along the tankhouse Y there). See Meshes/Tankhouse/README.md.
 - Slimes pipe stub to the slimes plant at (11.1, -4.7, 3.6), pointing -Y.
 
 ## Moving parts
@@ -24,8 +25,8 @@ anode slimes plant.
 |---|---|---|
 | SW_Receive / SW_Wash _L/R_Chain, sprockets | Chain loops along +X, sprockets spin about Y | see table |
 | SW_WalkingBeam | Up 0.05 m, +X 1.5 m, down, back | (11.50, 0, 0.30) |
-| SW_Tilter | Rotates about Y; Blender rotation Y = +90° lays the anode flat with the lugs toward +X and the back bars underneath | hinge (13.43, 0.0, 0.85) |
-| SW_StackForks | Lifts the flat anode off the tilter, then lowers one anode thickness per anode; at the bottom the stack sits on the rollers | (13.91, -1.15, 0.82) |
+| SW_Tilter | Rotates about Y; Blender rotation Y = +90° lays the anode flat with the lugs toward +X and the back bars underneath | hinge (13.43, 0.0, 0.88) |
+| SW_StackForks | Lifts the flat anode off the tilter, then lowers one anode thickness per anode; at the bottom the stack sits on the rollers | (13.91, -1.15, 0.85) |
 | SW_StackConv_Roller_NN | Spin about Y | roller axes |
 
 ### Pivots (all exported parts)
@@ -70,10 +71,10 @@ anode slimes plant.
 | SW_StackConv_Roller_24 | (20.73, 0.00, 0.39) |
 | SW_StackConv_Roller_25 | (21.04, 0.00, 0.39) |
 | SW_StackConv_Roller_26 | (21.35, 0.00, 0.39) |
-| SW_StackForks | (13.91, -1.15, 0.82) |
+| SW_StackForks | (13.91, -1.15, 0.85) |
 | SW_StackerFrame | (13.91, -1.40, 0.00) |
 | SW_StationFrame | (11.40, 0.00, 0.00) |
-| SW_Tilter | (13.43, 0.00, 0.85) |
+| SW_Tilter | (13.43, 0.00, 0.88) |
 | SW_TilterFrame | (13.43, 0.00, 0.00) |
 | SW_WalkingBeam | (11.50, 0.00, 0.30) |
 | SW_WalkingBeam_TravelCyl_Barrel | (9.90, 0.00, 0.12) |
@@ -103,7 +104,7 @@ The chain mesh is a closed loop with continuous U, like the belt conveyors.
 | Item | Value | Status |
 |---|---|---|
 | Scrap fraction | 13-20 % of the anode | Sourced (80-87 % consumed, BCcampus Aqueous Pathways) |
-| Scrap anode proxy | 0.96 x 0.80 x 0.012 m body, full lugs (~80 kg) | Estimated |
+| Scrap anode proxy | 1.0 x 0.82 x 0.012 m body, full lugs (~95 kg) | Estimated |
 | Cell load | 45 anodes | Inside the sourced 30-50 range |
 | Stack of 20, wash hood 4.6 m, settling tank Ø2.2 m | | Own design |
 

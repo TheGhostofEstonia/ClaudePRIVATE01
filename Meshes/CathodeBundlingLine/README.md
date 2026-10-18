@@ -14,7 +14,7 @@ carrying product, bundle number and net weight.
 - Infeed: roller top z = 0.45 m, roller length 1.3 m, at x = 0. Matches the stripping machine's stack
   conveyor (also z = 0.45); place this line so x = 0 meets its open end.
 - Outfeed: forklift pickup at the end stop, x = 21.65, room for about three bundles.
-- Bundle: 1.0 x 0.96 x 0.23 m, 36 sheets, about 1.9 t.
+- Bundle: 0.915 x 1.016 x 0.25 m, 30 sheets, about 2.0 t.
 
 ## Moving parts
 
@@ -107,8 +107,8 @@ carrying product, bundle number and net weight.
 | BL_Strap1Out_Roller_02 | (9.18, 0.00, 0.39) |
 | BL_Strap1_Arch | (8.20, 0.00, 0.00) |
 | BL_Strap1_PressCyl_Barrel | (8.20, 0.35, 1.75) |
-| BL_Strap1_PressCyl_Rod | (8.20, 0.35, 0.78) |
-| BL_Strap1_PressPlaten | (8.20, 0.00, 0.73) |
+| BL_Strap1_PressCyl_Rod | (8.20, 0.35, 0.80) |
+| BL_Strap1_PressPlaten | (8.20, 0.00, 0.75) |
 | BL_Strap2In_Frame | (11.10, 0.00, 0.00) |
 | BL_Strap2In_Roller_00 | (11.23, 0.00, 0.39) |
 | BL_Strap2In_Roller_01 | (11.59, 0.00, 0.39) |
@@ -120,8 +120,8 @@ carrying product, bundle number and net weight.
 | BL_Strap2Out_Roller_03 | (13.27, 0.00, 0.39) |
 | BL_Strap2_Arch | (12.20, 0.00, 0.00) |
 | BL_Strap2_PressCyl_Barrel | (12.20, 0.35, 1.75) |
-| BL_Strap2_PressCyl_Rod | (12.20, 0.35, 0.78) |
-| BL_Strap2_PressPlaten | (12.20, 0.00, 0.73) |
+| BL_Strap2_PressCyl_Rod | (12.20, 0.35, 0.80) |
+| BL_Strap2_PressPlaten | (12.20, 0.00, 0.75) |
 | BL_Turntable | (10.20, 0.00, 0.25) |
 | BL_TurntableBase | (10.20, 0.00, 0.00) |
 | BL_Turntable_Frame | (9.50, 0.00, 0.25) |
@@ -155,10 +155,10 @@ physics actor. Its pivot is its base centre.
 
 | Item | Value | Status |
 |---|---|---|
-| Bundle mass | about 1.9 t | Sourced: 1-4 t per bundle (Tata AIG cargo note), ~2,000 kg at one producer |
+| Bundle mass | about 2.0 t | Sourced: 1-4 t per bundle (Tata AIG cargo note), ~2,000 kg at one producer |
 | Strapping | Steel straps, 2 each way | Steel strapping sourced; strap count and 32 x 4 mm strap estimated |
 | Label | Product, bundle number, net weight | Sourced (producer); 200 x 120 mm label size estimated |
-| Sheet | 0.96 x 1.0 m x 6 mm | Estimated, same as the stripping machine |
+| Sheet | 1.016 x 0.915 m x 8 mm | Estimated, same as the stripping machine |
 | Strapping arches 2.4 m wide x 2.1 m high, turntable Ø1.9 m, robot reach ~1.3 m | | Estimated |
 
 Sources: research/copper-refinery/copper-refinery-equipment.md [S26] [S27].

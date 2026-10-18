@@ -17,7 +17,7 @@ layout and every size are estimates.
   20 blanks at 100 mm pitch.
 - Outfeed: BR_TransportRack_Out at x = 28.0, same rack. The racks are exported as their
   own parts, so they can also be used as props on a truck or in the tankhouse.
-- Chains: hanger-bar seat z = 2.15 m. Flat work height (roller top) z = 0.905 m.
+- Chains: hanger-bar seat z = 1.95 m. Flat work height (roller top) z = 0.900 m.
 
 ## Moving parts
 
@@ -26,8 +26,8 @@ layout and every size are estimates.
 | BR_HoistIn/Out_Trolley | Travels along X on the monorail | see table |
 | BR_HoistIn/Out_Gripper | Moves along Z (down to the rack seat, up to clear) and rides with the trolley | see table |
 | BR_ChainIn/Out _L/R_Chain, sprockets | Chain loops along +X | see table |
-| BR_TiltIn | Rotation Y 0° (upright, drawn) to +90° lays the blank flat toward +X | hinge (8.45, 0, 0.905) |
-| BR_TiltUp | Drawn flat (rotation Y = +90°); rotate to 0° to stand the blank up onto the out-chain | hinge (21.6, 0, 0.905) |
+| BR_TiltIn | Rotation Y 0° (upright, drawn) to +90° lays the blank flat toward +X | hinge (8.45, 0, 0.900) |
+| BR_TiltUp | Drawn flat (rotation Y = +90°); rotate to 0° to stand the blank up onto the out-chain | hinge (21.6, 0, 0.900) |
 | BR_PressGantry | Travels along X on its rails | (12.40, 0, 0.35) |
 | BR_PressCarriage | Travels along Y on the gantry beam; parented to the gantry | see table |
 | BR_PressRam | Moves down onto the blade; parented to the carriage | see table |
@@ -42,32 +42,32 @@ layout and every size are estimates.
 |---|---|
 | BR_BrushHousing | (16.00, 0.00, 0.00) |
 | BR_BrushMotors | (16.00, -1.20, 0.00) |
-| BR_BrushRoll_Bottom | (16.35, 0.00, 0.75) |
-| BR_BrushRoll_Top | (15.65, 0.00, 1.07) |
+| BR_BrushRoll_Bottom | (16.35, 0.00, 0.74) |
+| BR_BrushRoll_Top | (15.65, 0.00, 1.06) |
 | BR_BrushRolls_Frame | (15.00, 0.00, 0.00) |
 | BR_BrushRolls_Roller_00 | (15.25, 0.00, 0.84) |
 | BR_BrushRolls_Roller_01 | (15.75, 0.00, 0.84) |
 | BR_BrushRolls_Roller_02 | (16.25, 0.00, 0.84) |
 | BR_BrushRolls_Roller_03 | (16.75, 0.00, 0.84) |
 | BR_ChainIn_Frame | (3.40, 0.00, 0.00) |
-| BR_ChainIn_L_Chain | (3.40, 0.62, 1.99) |
-| BR_ChainIn_L_Sprocket_Head | (8.00, 0.62, 1.99) |
-| BR_ChainIn_L_Sprocket_Tail | (3.40, 0.62, 1.99) |
-| BR_ChainIn_R_Chain | (3.40, -0.62, 1.99) |
-| BR_ChainIn_R_Sprocket_Head | (8.00, -0.62, 1.99) |
-| BR_ChainIn_R_Sprocket_Tail | (3.40, -0.62, 1.99) |
+| BR_ChainIn_L_Chain | (3.40, 0.62, 1.79) |
+| BR_ChainIn_L_Sprocket_Head | (8.00, 0.62, 1.79) |
+| BR_ChainIn_L_Sprocket_Tail | (3.40, 0.62, 1.79) |
+| BR_ChainIn_R_Chain | (3.40, -0.62, 1.79) |
+| BR_ChainIn_R_Sprocket_Head | (8.00, -0.62, 1.79) |
+| BR_ChainIn_R_Sprocket_Tail | (3.40, -0.62, 1.79) |
 | BR_ChainOut_Frame | (21.60, 0.00, 0.00) |
-| BR_ChainOut_L_Chain | (21.60, 0.62, 1.99) |
-| BR_ChainOut_L_Sprocket_Head | (26.20, 0.62, 1.99) |
-| BR_ChainOut_L_Sprocket_Tail | (21.60, 0.62, 1.99) |
-| BR_ChainOut_R_Chain | (21.60, -0.62, 1.99) |
-| BR_ChainOut_R_Sprocket_Head | (26.20, -0.62, 1.99) |
-| BR_ChainOut_R_Sprocket_Tail | (21.60, -0.62, 1.99) |
+| BR_ChainOut_L_Chain | (21.60, 0.62, 1.79) |
+| BR_ChainOut_L_Sprocket_Head | (26.20, 0.62, 1.79) |
+| BR_ChainOut_L_Sprocket_Tail | (21.60, 0.62, 1.79) |
+| BR_ChainOut_R_Chain | (21.60, -0.62, 1.79) |
+| BR_ChainOut_R_Sprocket_Head | (26.20, -0.62, 1.79) |
+| BR_ChainOut_R_Sprocket_Tail | (21.60, -0.62, 1.79) |
 | BR_ContactGrinder_L | (18.00, 0.60, 0.95) |
 | BR_ContactGrinder_R | (18.00, -0.60, 0.95) |
 | BR_Dressing | (0.00, 0.00, 0.00) |
-| BR_EdgePress_L | (20.00, 0.62, 0.93) |
-| BR_EdgePress_R | (20.00, -0.62, 0.93) |
+| BR_EdgePress_L | (20.00, 0.62, 0.92) |
+| BR_EdgePress_R | (20.00, -0.62, 0.92) |
 | BR_EdgeStation | (20.00, 0.00, 0.00) |
 | BR_FlatnessScanner | (6.00, 0.00, 0.00) |
 | BR_GrinderCyl_L_Barrel | (18.00, 0.60, 1.75) |
@@ -76,10 +76,10 @@ layout and every size are estimates.
 | BR_GrinderCyl_R_Rod | (18.00, -0.60, 1.25) |
 | BR_GrinderFrame | (18.00, 0.00, 0.00) |
 | BR_Guards | (0.00, 0.00, 0.00) |
-| BR_HoistIn_Gripper | (3.60, 0.00, 2.45) |
+| BR_HoistIn_Gripper | (3.60, 0.00, 2.25) |
 | BR_HoistIn_Monorail | (0.20, 0.00, 4.20) |
 | BR_HoistIn_Trolley | (3.60, 0.00, 4.20) |
-| BR_HoistOut_Gripper | (26.00, 0.00, 2.45) |
+| BR_HoistOut_Gripper | (26.00, 0.00, 2.25) |
 | BR_HoistOut_Monorail | (25.80, 0.00, 4.20) |
 | BR_HoistOut_Trolley | (26.00, 0.00, 4.20) |
 | BR_PressBed | (12.80, 0.00, 0.00) |
@@ -146,7 +146,7 @@ The chain mesh is a closed loop with continuous U, like the belt conveyors.
 |---|---|---|
 | Work list | polishing, contact cleaning, straightening, flattening, edge-strip replacement | Sourced (Metso, Boliden Pori) |
 | Fleet | 28,000 plates; ~300/week sent for checks; plate life ≥10 years | Sourced (same) |
-| Blade | 1.0 x 1.25 m x 3.25 mm | Thickness sourced, size estimated |
+| Blade | 1.04 x 1.05 m x 3.25 mm | Thickness sourced, size matches SM_PermanentCathode |
 | Rack of 20, press gantry 2.8 m wide, brush rolls Ø0.32 m, work height 0.90 m | | Own design |
 
 Source: Metso case study, "Maintained cathodes ensure refinery's cost-efficiency"

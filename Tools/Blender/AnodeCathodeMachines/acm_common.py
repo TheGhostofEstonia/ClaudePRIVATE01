@@ -26,16 +26,18 @@ import psh_build as pb  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 # ---------------------------------------------------------------------------
-# Electrode sizes. Thickness and pitch sourced, the rest estimated.
-# Keep in step with the tankhouse thread (cells, cathodes, crane bale).
+# Electrode sizes, matched to the tankhouse core meshes (Tools/Blender/Tankhouse/
+# th_layout.py: SM_PermanentCathode and the anode set's ATC_Anode).
+# Blade thickness and pitch sourced, the rest estimated by those threads.
 # ---------------------------------------------------------------------------
-BLADE_W, BLADE_H, BLADE_T = 1.000, 1.250, 0.00325   # 316L blade, 3.25 mm (sourced)
-EDGE_STRIP_W = 0.030                                # polymer edge strip on vertical edges
-HBAR_L, HBAR_W, HBAR_H = 1.36, 0.020, 0.040         # hanger bar along Y, section 20 x 40 mm
-DEPOSIT_W, DEPOSIT_H, DEPOSIT_T = 0.960, 1.000, 0.006  # copper on each face (~55 kg per sheet)
-ANODE_W, ANODE_H, ANODE_T = 0.960, 0.980, 0.040     # anode body, ~340 kg with lugs
-ANODE_LUG_SPAN = 1.24                               # lug tip to lug tip
-ANODE_LUG_H = 0.10                                  # lug depth, top 0.03 m above the body
+BLADE_W, BLADE_H, BLADE_T = 1.040, 1.050, 0.00325   # 316L blade below the bar, 3.25 mm (sourced)
+EDGE_STRIP_W = 0.018                                # PP edge strip on both side edges
+HBAR_L, HBAR_W, HBAR_H = 1.32, 0.025, 0.035         # hanger bar along Y, 25 thick x 35 tall
+DEPOSIT_W, DEPOSIT_H, DEPOSIT_T = 1.016, 0.915, 0.008  # copper on each face (~67 kg per sheet)
+DEPOSIT_TOP_GAP = 0.13                              # deposit top edge below the hanger-bar underside
+ANODE_W, ANODE_H, ANODE_T = 1.000, 1.000, 0.045     # anode body (same as ATC_Anode)
+ANODE_LUG_SPAN = 1.32                               # lug tip to lug tip (lugs from |y| 0.50 to 0.66)
+ANODE_LUG_H, ANODE_LUG_T = 0.12, 0.040              # lug height (top flush with body) and thickness
 SCRAP_T = 0.012                                     # spent anode body thickness (13-20 % left)
 PITCH = 0.100                                       # same-type electrode pitch in a cell (sourced)
 HANG_Z = 1.60                                       # lug / hanger-bar seat height on the machines
@@ -86,30 +88,29 @@ def _material_dict():
 def add_anode(p, x, seat_z, M, scrap=False):
     """Anode hanging at x with its lug undersides at seat_z (plate in YZ, faces normal X)."""
     t = SCRAP_T if scrap else ANODE_T
-    top = seat_z + ANODE_LUG_H - 0.03          # body top sits 0.03 below the lug top
+    top = seat_z + ANODE_LUG_H                 # body top is flush with the lug tops
     body_h = ANODE_H * (0.82 if scrap else 1.0)  # spent anodes are also eaten from the bottom
     p.box((t, ANODE_W, body_h), (x, 0, top - body_h / 2), M['anode'])
-    # lugs: full anode thickness at the top, cantilevered out to the lug span
-    lug_len = (ANODE_LUG_SPAN - ANODE_W) / 2 + 0.06
+    # lugs stick out sideways from the top corners, from the body edge to the lug span
+    lug_len = (ANODE_LUG_SPAN - ANODE_W) / 2
     for s in (-1, 1):
-        y = s * (ANODE_LUG_SPAN / 2 - lug_len / 2)
-        p.box((ANODE_T, lug_len, ANODE_LUG_H), (x, y, seat_z + ANODE_LUG_H / 2), M['anode'])
+        y = s * (ANODE_W / 2 + lug_len / 2)
+        p.box((ANODE_LUG_T, lug_len, ANODE_LUG_H), (x, y, seat_z + ANODE_LUG_H / 2), M['anode'])
     return p
 
 
 def add_cathode(p, x, seat_z, M, deposit=True):
     """Permanent cathode at x, hanger-bar underside at seat_z. deposit adds the two copper sheets."""
-    bar_z = seat_z + HBAR_H / 2
-    p.box((HBAR_W, HBAR_L, HBAR_H), (x, 0, bar_z), M['copper'])
-    blade_top = seat_z + 0.005
-    p.box((BLADE_T, BLADE_W, BLADE_H), (x, 0, blade_top - BLADE_H / 2), M['stainless'])
+    p.box((HBAR_W, HBAR_L, HBAR_H), (x, 0, seat_z + HBAR_H / 2), M['copper'])
+    p.box((BLADE_T, BLADE_W, BLADE_H), (x, 0, seat_z - BLADE_H / 2), M['stainless'])
     for s in (-1, 1):
-        p.box((0.012, EDGE_STRIP_W, BLADE_H - 0.12),
-              (x, s * (BLADE_W / 2 - EDGE_STRIP_W / 2 + 0.004), blade_top - 0.06 - (BLADE_H - 0.12) / 2),
+        p.box((0.010, EDGE_STRIP_W, BLADE_H - 0.03),
+              (x, s * (BLADE_W / 2 + EDGE_STRIP_W / 2 - 0.006), seat_z - 0.03 - (BLADE_H - 0.03) / 2),
               M['plastic'])
     if deposit:
+        bottom = seat_z - DEPOSIT_TOP_GAP - DEPOSIT_H
         for s in (-1, 1):
-            add_sheet(p, x + s * (BLADE_T / 2 + DEPOSIT_T / 2), blade_top - BLADE_H, M, upright=True)
+            add_sheet(p, x + s * (BLADE_T / 2 + DEPOSIT_T / 2), bottom, M, upright=True)
     return p
 
 

@@ -12,14 +12,15 @@ EP0482258A1 show stripping machines, but none gives dimensions. All sizes here a
 
 - Origin (0, 0, 0): floor at the infeed end, on the line centre. Plates move along +X.
 - Footprint: x -0.5 to 25.0, y -5.3 to 3.6 (about 25.5 x 8.9 m).
-- Infeed: crane drop zone on the receiving chains, x 0 to 7, hanger-bar seat z = 2.00 m,
+- Infeed: crane drop zone on the receiving chains, x 0 to 7, hanger-bar seat z = 1.80 m,
   chains at y = +-0.62. The seat is higher than the anode machine (1.60 m) so the
   sheets can tip flat at z = 0.70 m above the stacking forks.
 - Blank outfeed: crane pickup zone on the discharge chains, x 19.65 to 24.25,
-  46 blanks at 100 mm pitch, seat z = 2.00 m.
+  46 blanks at 100 mm pitch, seat z = 1.80 m.
 - Copper outfeed: stack roller conveyor along +X at y = -2.30, roller top z = 0.45 m,
   open end at x = 24.5. Feeds SM_CathodeBundlingLine (its infeed is at the same height).
-- Reject rack (hanger-bar rails, seat z = 2.00) on +Y at (17.9, 2.6).
+- Tankhouse link: the crane carries a cell load between this machine and the tankhouse transfer stand CathodeOut at (-12, 8) for harvested cathodes in, and CathodeBlankIn at (-22, 8) for blanks out (tankhouse coordinates, seat z 1.20, electrodes stacked along Y, so this machine's X runs along the tankhouse Y there). See Meshes/Tankhouse/README.md.
+- Reject rack (hanger-bar rails, seat z = 1.80) on +Y at (17.9, 2.6).
 
 ## Stations and moving parts
 
@@ -42,39 +43,39 @@ Cylinders: _Barrel pivot at the base end, _Rod pivot at the rod end, local +X al
 | Object | Pivot (Blender X, Y, Z) |
 |---|---|
 | CS_Discharge_Frame | (17.60, 0.00, 0.00) |
-| CS_Discharge_L_Chain | (17.60, 0.62, 1.84) |
-| CS_Discharge_L_Sprocket_Head | (24.50, 0.62, 1.84) |
-| CS_Discharge_L_Sprocket_Tail | (17.60, 0.62, 1.84) |
-| CS_Discharge_R_Chain | (17.60, -0.62, 1.84) |
-| CS_Discharge_R_Sprocket_Head | (24.50, -0.62, 1.84) |
-| CS_Discharge_R_Sprocket_Tail | (17.60, -0.62, 1.84) |
+| CS_Discharge_L_Chain | (17.60, 0.62, 1.64) |
+| CS_Discharge_L_Sprocket_Head | (24.50, 0.62, 1.64) |
+| CS_Discharge_L_Sprocket_Tail | (17.60, 0.62, 1.64) |
+| CS_Discharge_R_Chain | (17.60, -0.62, 1.64) |
+| CS_Discharge_R_Sprocket_Head | (24.50, -0.62, 1.64) |
+| CS_Discharge_R_Sprocket_Tail | (17.60, -0.62, 1.64) |
 | CS_Dressing | (0.00, 0.00, 0.00) |
-| CS_FlexClamp | (13.90, 0.00, 2.25) |
-| CS_FlexClampCyl_Barrel | (13.90, 0.00, 2.90) |
-| CS_FlexClampCyl_Rod | (13.90, 0.00, 2.14) |
-| CS_FlexCyl_Down_Barrel | (14.52, 0.00, 1.21) |
-| CS_FlexCyl_Down_Rod | (14.17, 0.00, 1.21) |
-| CS_FlexCyl_Up_Barrel | (13.28, 0.00, 1.21) |
-| CS_FlexCyl_Up_Rod | (13.63, 0.00, 1.21) |
+| CS_FlexClamp | (13.90, 0.00, 2.05) |
+| CS_FlexClampCyl_Barrel | (13.90, 0.00, 2.70) |
+| CS_FlexClampCyl_Rod | (13.90, 0.00, 1.94) |
+| CS_FlexCyl_Down_Barrel | (14.52, 0.00, 1.20) |
+| CS_FlexCyl_Down_Rod | (14.17, 0.00, 1.20) |
+| CS_FlexCyl_Up_Barrel | (13.28, 0.00, 1.20) |
+| CS_FlexCyl_Up_Rod | (13.63, 0.00, 1.20) |
 | CS_FlexFrame | (13.90, 0.00, 0.00) |
-| CS_FlexRoller_Down | (14.02, 0.00, 1.21) |
-| CS_FlexRoller_Up | (13.78, 0.00, 1.21) |
+| CS_FlexRoller_Down | (14.02, 0.00, 1.20) |
+| CS_FlexRoller_Up | (13.78, 0.00, 1.20) |
 | CS_Guards | (0.00, 0.00, 0.00) |
-| CS_KnifeCyl_Down_Barrel | (17.00, 0.70, 3.05) |
-| CS_KnifeCyl_Down_Rod | (16.32, 0.42, 2.25) |
-| CS_KnifeCyl_Up_Barrel | (14.80, 0.70, 3.05) |
-| CS_KnifeCyl_Up_Rod | (15.48, 0.42, 2.25) |
+| CS_KnifeCyl_Down_Barrel | (17.00, 0.70, 2.85) |
+| CS_KnifeCyl_Down_Rod | (16.32, 0.42, 2.05) |
+| CS_KnifeCyl_Up_Barrel | (14.80, 0.70, 2.85) |
+| CS_KnifeCyl_Up_Rod | (15.48, 0.42, 2.05) |
 | CS_PickupGuides | (19.65, 0.00, 0.00) |
 | CS_Receive_Frame | (0.00, 0.00, 0.00) |
-| CS_Receive_L_Chain | (0.00, 0.62, 1.84) |
-| CS_Receive_L_Sprocket_Head | (7.00, 0.62, 1.84) |
-| CS_Receive_L_Sprocket_Tail | (0.00, 0.62, 1.84) |
-| CS_Receive_R_Chain | (0.00, -0.62, 1.84) |
-| CS_Receive_R_Sprocket_Head | (7.00, -0.62, 1.84) |
-| CS_Receive_R_Sprocket_Tail | (0.00, -0.62, 1.84) |
+| CS_Receive_L_Chain | (0.00, 0.62, 1.64) |
+| CS_Receive_L_Sprocket_Head | (7.00, 0.62, 1.64) |
+| CS_Receive_L_Sprocket_Tail | (0.00, 0.62, 1.64) |
+| CS_Receive_R_Chain | (0.00, -0.62, 1.64) |
+| CS_Receive_R_Sprocket_Head | (7.00, -0.62, 1.64) |
+| CS_Receive_R_Sprocket_Tail | (0.00, -0.62, 1.64) |
 | CS_RejectRack | (17.90, 2.60, 0.00) |
-| CS_RejectTongs | (17.90, 0.00, 2.70) |
-| CS_RejectTrolley | (17.90, 0.00, 3.40) |
+| CS_RejectTongs | (17.90, 0.00, 2.50) |
+| CS_RejectTrolley | (17.90, 0.00, 3.20) |
 | CS_SheetPusher_Down | (16.46, 0.62, 0.78) |
 | CS_SheetPusher_Up | (15.34, 0.62, 0.78) |
 | CS_SheetTilter_Down | (15.96, 0.00, 0.70) |
@@ -118,8 +119,8 @@ Cylinders: _Barrel pivot at the base end, _Rod pivot at the rod end, local +X al
 | CS_StackerFrame | (15.90, -2.30, 0.00) |
 | CS_StationFrame | (11.40, 0.00, 0.00) |
 | CS_StripFrame | (15.90, 0.00, 0.00) |
-| CS_StripKnife_Down | (16.65, 0.00, 2.95) |
-| CS_StripKnife_Up | (15.15, 0.00, 2.95) |
+| CS_StripKnife_Down | (16.65, 0.00, 2.75) |
+| CS_StripKnife_Up | (15.15, 0.00, 2.75) |
 | CS_TilterCyl_Down_Barrel | (16.56, 0.55, 0.15) |
 | CS_TilterCyl_Down_Rod | (15.98, 0.55, 1.05) |
 | CS_TilterCyl_Up_Barrel | (15.24, 0.55, 0.15) |
@@ -129,12 +130,12 @@ Cylinders: _Barrel pivot at the base end, _Rod pivot at the rod end, local +X al
 | CS_WalkingBeam_TravelCyl_Rod | (11.42, 0.00, 0.12) |
 | CS_WashHood | (7.60, 0.00, 0.00) |
 | CS_Wash_Frame | (7.40, 0.00, 0.00) |
-| CS_Wash_L_Chain | (7.40, 0.62, 1.84) |
-| CS_Wash_L_Sprocket_Head | (11.40, 0.62, 1.84) |
-| CS_Wash_L_Sprocket_Tail | (7.40, 0.62, 1.84) |
-| CS_Wash_R_Chain | (7.40, -0.62, 1.84) |
-| CS_Wash_R_Sprocket_Head | (11.40, -0.62, 1.84) |
-| CS_Wash_R_Sprocket_Tail | (7.40, -0.62, 1.84) |
+| CS_Wash_L_Chain | (7.40, 0.62, 1.64) |
+| CS_Wash_L_Sprocket_Head | (11.40, 0.62, 1.64) |
+| CS_Wash_L_Sprocket_Tail | (7.40, 0.62, 1.64) |
+| CS_Wash_R_Chain | (7.40, -0.62, 1.64) |
+| CS_Wash_R_Sprocket_Head | (11.40, -0.62, 1.64) |
+| CS_Wash_R_Sprocket_Tail | (7.40, -0.62, 1.64) |
 
 ## Unreal import
 
@@ -151,13 +152,13 @@ The chain mesh is a closed loop with continuous U, like the belt conveyors.
 
 | Item | Value | Status |
 |---|---|---|
-| Blade | 1.0 x 1.25 m, 3.25 mm 316L | Thickness sourced (patents); width and height estimated |
-| Hanger bar | 1.36 m, 20 x 40 mm, copper-clad stainless | Construction sourced (patents), size estimated |
-| Copper sheet | 0.96 x 1.0 m x 6 mm, ~55 kg | Estimated (two sheets per plate) |
+| Blade | 1.04 x 1.05 m below the bar, 3.25 mm 316L | Thickness sourced (patents); size matches SM_PermanentCathode (tankhouse thread) |
+| Hanger bar | 1.32 m, 25 x 35 mm, copper plated | Construction sourced (patents), size matches SM_PermanentCathode |
+| Copper sheet | 1.016 x 0.915 m x 8 mm, ~67 kg, top edge 0.13 m below the bar | Matches SM_PermanentCathode (estimated there) |
 | Throughput | ~250 plates/h (early machines); ~500/h needs two strip stations; >600/h reported | Sourced: Wikipedia IsaKidd, Glencore patent background, CIM paper |
 | Cell load | 46 cathodes | Estimated (anodes + 1, sourced rule) |
-| Stack of 36 sheets, ~2.0 t | One stack = one bundle | Sourced bundle mass 1-4 t, ~2,000 kg at one producer; sheet count estimated |
-| Walking-beam step 2.0 m, seat height 2.0 m | | Own design |
+| Stack of 30 sheets, ~2.0 t | One stack = one bundle | Sourced bundle mass 1-4 t, ~2,000 kg at one producer; sheet count estimated |
+| Walking-beam step 2.0 m, seat height 1.8 m | | Own design |
 
 Sources: Glencore IsaKidd electrode handling equipment
 (https://www.glencoretechnology.com/en/technologies/isakidd/electrode-handling-equipment);

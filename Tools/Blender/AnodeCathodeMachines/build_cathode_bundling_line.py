@@ -25,7 +25,7 @@ ASSET, NAME = "CathodeBundlingLine", "SM_CathodeBundlingLine"
 # ---------------------------------------------------------------------------
 RZ = 0.45                     # roller top, same as the stripping machine's stack conveyor
 WIDTH = 1.30                  # roller length
-SHEETS = 36                   # sheets per bundle (~2.0 t)
+SHEETS = 30                   # sheets per bundle (~2.0 t)
 BH = SHEETS * ac.DEPOSIT_T + 0.01   # bundle height incl. air gaps
 STRAP1_X, TURN_X, STRAP2_X, LABEL_X = 8.2, 10.2, 12.2, 14.5
 OUT = (15.5, 21.5)            # outfeed accumulation, forklift pickup at the end

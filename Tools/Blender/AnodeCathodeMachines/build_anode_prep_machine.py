@@ -26,8 +26,8 @@ ASSET, NAME = "AnodePrepMachine", "SM_AnodePrepMachine"
 # ---------------------------------------------------------------------------
 Z = ac.HANG_Z                 # lug seat height on chains, rails and rack
 CHAIN_Y = 0.56                # chain strands under the lugs
-LUG_Y = 0.585                 # lug contact face centre (rails, lug press, mills)
-WB_Y = 0.50                   # walking-beam bars, under the inner lug area
+LUG_Y = 0.60                  # lug contact face centre (rails, lug press, mills)
+WB_Y = 0.525                  # walking-beam bars, under the inner lug area
 INFEED = (0.0, 7.0)           # infeed chain conveyor
 STATIONS = {                  # walking-beam stations, 1.5 m step
     'pick': 7.5, 'weigh': 9.0, 'press': 10.5, 'lugpress': 12.0, 'mill': 13.5, 'reject': 15.0}
@@ -92,7 +92,7 @@ def build(col, ref, M):
         pr.box_mm((px - 1.15, s * 1.05 - 0.15, 2.9), (px + 1.15, s * 1.05 + 0.15, 3.3), M['frame'])
         pr.box_mm((px - 1.15, s * 1.05 - 0.15, 0.0), (px + 1.15, s * 1.05 + 0.15, 0.3), M['frame'])
     pr.finish(col)
-    zc = Z + 0.07 - ac.ANODE_H / 2
+    zc = Z + ac.ANODE_LUG_H - ac.ANODE_H / 2
     for nm, sgn in (("Up", -1), ("Down", 1)):
         pl = pb.Part(f"AP_PressPlaten_{nm}", pivot=(px + sgn * 0.35, 0, zc))
         pl.box((0.08, 0.92, 0.90), (px + sgn * 0.35, 0, zc), M['grey'])
@@ -104,7 +104,7 @@ def build(col, ref, M):
     lx = STATIONS['lugpress']
     lp = pb.Part("AP_LugPressFrame", pivot=(lx, 0, 0))
     for s in (-1, 1):
-        lp.box_mm((lx - 0.35, s * LUG_Y - 0.07, 0), (lx + 0.35, s * LUG_Y + 0.07, Z - 0.10), M['frame'])  # anvil column
+        lp.box_mm((lx - 0.35, s * LUG_Y - 0.05, 0), (lx + 0.35, s * LUG_Y + 0.05, Z - 0.10), M['frame'])  # anvil column
         lp.box_mm((lx - 0.35, s * 1.0 - 0.12, 0), (lx + 0.35, s * 1.0 + 0.12, Z + 1.05), M['frame'])      # C-frame back
         lp.box_mm((lx - 0.35, min(s * 0.50, s * 1.12), Z + 0.85), (lx + 0.35, max(s * 0.50, s * 1.12), Z + 1.05), M['frame'])
     lp.finish(col)
@@ -136,10 +136,10 @@ def build(col, ref, M):
         car.finish(col)
         cut = pb.Part(f"AP_MillCutter_{side}", pivot=(mx, y, Z - 0.05))
         cut.cyl(0.04, 0.30, (mx, y, Z - 0.25), M['grey'], seg=12)
-        cut.cyl(0.075, 0.05, (mx, y, Z - 0.075), M['grey'], seg=20)
+        cut.cyl(0.05, 0.05, (mx, y, Z - 0.075), M['grey'], seg=20)
         for i in range(6):
             a = i * math.pi / 3
-            cut.box((0.02, 0.015, 0.03), (mx + 0.07 * math.cos(a), y + 0.07 * math.sin(a), Z - 0.06), M['yellow'])
+            cut.box((0.02, 0.015, 0.03), (mx + 0.045 * math.cos(a), y + 0.045 * math.sin(a), Z - 0.06), M['yellow'])
         cut.finish(col)
 
     # --- inspection arch with cameras, reject hoist on a runway to a reject rack on -Y ---
@@ -175,9 +175,9 @@ def build(col, ref, M):
     # --- spacer: comb guides over the pickup zone, end stop ---
     cg = pb.Part("AP_PickupGuides", pivot=(PICK_X0, 0, 0))
     for s in (-1, 1):
-        cg.box_mm((PICK_X0 - 0.1, s * 0.66 - 0.02, Z - 0.02), (SPACER[1], s * 0.66 + 0.02, Z + 0.14), M['grey'])
+        cg.box_mm((PICK_X0 - 0.1, s * 0.70 - 0.02, Z - 0.02), (SPACER[1], s * 0.70 + 0.02, Z + 0.14), M['grey'])
         for i in range(LOAD):
-            cg.box((0.012, 0.04, 0.10), (PICK_X0 + i * ac.PITCH + 0.05, s * 0.66, Z + 0.15), M['steel'])
+            cg.box((0.012, 0.04, 0.10), (PICK_X0 + i * ac.PITCH + 0.05, s * 0.70, Z + 0.15), M['steel'])
     cg.box_mm((SPACER[1] + 0.25, -0.9, 0), (SPACER[1] + 0.45, 0.9, Z + 0.25), M['yellow'])
     cg.finish(col)
     dog = pb.Part("AP_SpacerDogs", pivot=(SPACER[0], 0, Z))
@@ -237,8 +237,9 @@ with dimensions, so the layout and every machine size here are estimates.
   z = {ac.HANG_Z:.2f} m. Chains at y = +-{CHAIN_Y:.2f}.
 - Outfeed: crane pickup zone on the spacing chain, x {PICK_X0:.2f} to {SPACER[1] - 0.35 + 0.05:.2f},
   {LOAD} anodes at {ac.PITCH * 1000:.0f} mm pitch, lug seat z = {ac.HANG_Z:.2f} m. End stop at x = {SPACER[1] + 0.35:.2f}.
+- Tankhouse link: the crane carries a cell load between this machine and the tankhouse transfer stand AnodeIn at (-12, -8) (tankhouse coordinates, seat z 1.20, electrodes stacked along Y, so this machine's X runs along the tankhouse Y there). See Meshes/Tankhouse/README.md.
 - Reject rack (lug rails, seat z = {ac.HANG_Z:.2f}) on the -Y side, centred at ({STATIONS['reject']:.1f}, -2.6).
-- Lug span {ac.ANODE_LUG_SPAN:.2f} m; the crane bale (tankhouse thread) must match.
+- Lug span {ac.ANODE_LUG_SPAN:.2f} m, same anode as the anode set and the tankhouse cells.
 
 ## Stations
 
@@ -268,8 +269,8 @@ both with local +X along the cylinder axis, so they can be aimed at each other.
 | Item | Value | Status |
 |---|---|---|
 | Capacity | up to 500 anodes/h | Sourced, Metso brochure (vendor claim) |
-| Anode body | {ac.ANODE_W} x {ac.ANODE_H} x {ac.ANODE_T} m, ~340 kg with lugs | Estimated inside the sourced 1 x 1 x 0.04-0.05 m, 300-380 kg range |
-| Lug span | {ac.ANODE_LUG_SPAN} m | Estimated |
+| Anode body | {ac.ANODE_W} x {ac.ANODE_H} x {ac.ANODE_T} m, lugs {ac.ANODE_LUG_H} x {ac.ANODE_LUG_T} m | Matches ATC_Anode from the anode set. By volume it is ~415 kg, above the sourced 300-380 kg range |
+| Lug span | {ac.ANODE_LUG_SPAN} m | Matches ATC_Anode (estimated there) |
 | Electrode pitch | {ac.PITCH} m | Sourced (same-type pitch in the cell) |
 | Anodes per cell load | {LOAD} | Inside the sourced 30-50 range; change LOAD in the script |
 | Lug seat height {ac.HANG_Z} m, chains 7 m and 12.5 m, 1.5 m station step | | Own design |

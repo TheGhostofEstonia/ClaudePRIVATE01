@@ -24,9 +24,9 @@ ASSET, NAME = "CathodeStrippingMachine", "SM_CathodeStrippingMachine"
 # ---------------------------------------------------------------------------
 # Layout parameters (metres). Own design unless stated.
 # ---------------------------------------------------------------------------
-Z = 2.00                      # hanger-bar seat height (raised so the sheets tip flat at 0.70 m)
+Z = 1.80                      # hanger-bar seat height (raised so the sheets tip flat at 0.70 m)
 CHAIN_Y = 0.62                # chains under the hanger-bar ends
-WB_Y = 0.50                   # walking-beam bars under the hanger bar, inside the chains
+WB_Y = 0.57                   # walking-beam bars under the hanger bar, outside the blade edge strips
 RECEIVE = (0.0, 7.0)          # receiving chains (crane drop zone)
 WASH = (7.4, 11.4)            # wash chains inside the hood
 STATIONS = {'pick': 11.9, 'flex': 13.9, 'strip': 15.9, 'exit': 17.9}   # 2.0 m walking-beam step
@@ -34,10 +34,10 @@ DISCHARGE = (17.6, 24.5)      # blank discharge chains, crane pickup zone at the
 LOAD = 46                     # cathodes per cell load (one more than the anodes)
 STACK_Y = -2.30               # copper stack conveyor centre line
 STACK_Z = 0.45                # roller top of the stack conveyor
-STACK_N = 36                  # sheets per stack, ~2.0 t (one bundle)
+STACK_N = 30                  # sheets per stack, ~2.0 t (one bundle)
 TILT_Z = 0.70                 # tilter hinge height (sheets lie flat here)
-BLADE_BOT = Z + 0.005 - ac.BLADE_H
-DEP_TOP = BLADE_BOT + ac.DEPOSIT_H
+BLADE_BOT = Z - ac.BLADE_H
+DEP_TOP = Z - ac.DEPOSIT_TOP_GAP
 PICK_X0 = DISCHARGE[1] - 0.35 - (LOAD - 1) * ac.PITCH
 
 
@@ -67,9 +67,9 @@ def build(col, ref, M):
     tie_z = 0.20
     wb = pb.Part("CS_WalkingBeam", pivot=(wb_x0, 0, tie_z))
     for s in (-1, 1):
-        wb.box_mm((wb_x0, s * WB_Y - 0.02, Z - 0.16), (wb_x1, s * WB_Y + 0.02, Z - 0.04), M['grey'])
+        wb.box_mm((wb_x0, s * WB_Y - 0.015, Z - 0.16), (wb_x1, s * WB_Y + 0.015, Z - 0.04), M['grey'])
         for x in STATIONS.values():
-            wb.box((0.08, 0.04, 0.03), (x, s * WB_Y, Z - 0.025), M['steel'])
+            wb.box((0.08, 0.03, 0.03), (x, s * WB_Y, Z - 0.025), M['steel'])
         for x in (wb_x0, wb_x1):
             wb.box_mm((x - 0.05, s * WB_Y - 0.02, tie_z), (x + 0.05, s * WB_Y + 0.02, Z - 0.16), M['grey'])
     for x in (wb_x0, wb_x1):
@@ -243,6 +243,7 @@ EP0482258A1 show stripping machines, but none gives dimensions. All sizes here a
   {LOAD} blanks at {ac.PITCH * 1000:.0f} mm pitch, seat z = {Z:.2f} m.
 - Copper outfeed: stack roller conveyor along +X at y = {STACK_Y:.2f}, roller top z = {STACK_Z:.2f} m,
   open end at x = 24.5. Feeds SM_CathodeBundlingLine (its infeed is at the same height).
+- Tankhouse link: the crane carries a cell load between this machine and the tankhouse transfer stand CathodeOut at (-12, 8) for harvested cathodes in, and CathodeBlankIn at (-22, 8) for blanks out (tankhouse coordinates, seat z 1.20, electrodes stacked along Y, so this machine's X runs along the tankhouse Y there). See Meshes/Tankhouse/README.md.
 - Reject rack (hanger-bar rails, seat z = {Z:.2f}) on +Y at ({STATIONS['exit']:.1f}, 2.6).
 
 ## Stations and moving parts
@@ -272,9 +273,9 @@ Cylinders: _Barrel pivot at the base end, _Rod pivot at the rod end, local +X al
 
 | Item | Value | Status |
 |---|---|---|
-| Blade | {ac.BLADE_W} x {ac.BLADE_H} m, {ac.BLADE_T * 1000:.2f} mm 316L | Thickness sourced (patents); width and height estimated |
-| Hanger bar | {ac.HBAR_L} m, 20 x 40 mm, copper-clad stainless | Construction sourced (patents), size estimated |
-| Copper sheet | {ac.DEPOSIT_W} x {ac.DEPOSIT_H} m x {ac.DEPOSIT_T * 1000:.0f} mm, ~55 kg | Estimated (two sheets per plate) |
+| Blade | {ac.BLADE_W} x {ac.BLADE_H} m below the bar, {ac.BLADE_T * 1000:.2f} mm 316L | Thickness sourced (patents); size matches SM_PermanentCathode (tankhouse thread) |
+| Hanger bar | {ac.HBAR_L} m, 25 x 35 mm, copper plated | Construction sourced (patents), size matches SM_PermanentCathode |
+| Copper sheet | {ac.DEPOSIT_W} x {ac.DEPOSIT_H} m x {ac.DEPOSIT_T * 1000:.0f} mm, ~67 kg, top edge {ac.DEPOSIT_TOP_GAP} m below the bar | Matches SM_PermanentCathode (estimated there) |
 | Throughput | ~250 plates/h (early machines); ~500/h needs two strip stations; >600/h reported | Sourced: Wikipedia IsaKidd, Glencore patent background, CIM paper |
 | Cell load | {LOAD} cathodes | Estimated (anodes + 1, sourced rule) |
 | Stack of {STACK_N} sheets, ~2.0 t | One stack = one bundle | Sourced bundle mass 1-4 t, ~2,000 kg at one producer; sheet count estimated |

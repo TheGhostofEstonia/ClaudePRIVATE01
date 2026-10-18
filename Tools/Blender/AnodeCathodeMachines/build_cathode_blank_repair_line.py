@@ -26,8 +26,8 @@ ASSET, NAME = "CathodeBlankRepairLine", "SM_CathodeBlankRepairLine"
 # ---------------------------------------------------------------------------
 # Layout parameters (metres). Own design unless stated.
 # ---------------------------------------------------------------------------
-Z = 2.15                      # hanger-bar seat on the chains (blade bottom at work height)
-RZ = Z + 0.005 - ac.BLADE_H   # roller top = blade bottom = 0.905
+Z = 1.95                      # hanger-bar seat on the chains (blade bottom at work height)
+RZ = Z - ac.BLADE_H           # roller top = blade bottom = 0.90
 CHAIN_Y = 0.62
 RACK_Z = 1.40                 # hanger-bar seat in the transport racks
 RACK_N = 20                   # blanks per transport rack
@@ -46,10 +46,10 @@ WIDTH = 1.50                  # roller length
 def add_flat_blank(p, x0, M):
     """Blank lying flat on the rollers, blade from x0 toward +X, hanger bar at the +X end."""
     p.box((ac.BLADE_H, ac.BLADE_W, ac.BLADE_T), (x0 + ac.BLADE_H / 2, 0, RZ + ac.BLADE_T / 2), M['stainless'])
-    p.box((ac.HBAR_H, ac.HBAR_L, ac.HBAR_W), (x0 + ac.BLADE_H + ac.HBAR_H / 2 - 0.005, 0, RZ + ac.HBAR_W / 2), M['copper'])
+    p.box((ac.HBAR_H, ac.HBAR_L, ac.HBAR_W), (x0 + ac.BLADE_H + ac.HBAR_H / 2, 0, RZ + ac.HBAR_W / 2), M['copper'])
     for s in (-1, 1):
-        p.box((ac.BLADE_H - 0.12, ac.EDGE_STRIP_W, 0.012),
-              (x0 + 0.06 + (ac.BLADE_H - 0.12) / 2, s * (ac.BLADE_W / 2 - ac.EDGE_STRIP_W / 2 + 0.004), RZ + 0.006), M['plastic'])
+        p.box((ac.BLADE_H - 0.03, ac.EDGE_STRIP_W, 0.010),
+              (x0 + (ac.BLADE_H - 0.03) / 2, s * (ac.BLADE_W / 2 + ac.EDGE_STRIP_W / 2 - 0.006), RZ + 0.005), M['plastic'])
     return p
 
 
@@ -316,7 +316,7 @@ layout and every size are estimates.
 |---|---|---|
 | Work list | polishing, contact cleaning, straightening, flattening, edge-strip replacement | Sourced (Metso, Boliden Pori) |
 | Fleet | 28,000 plates; ~300/week sent for checks; plate life ≥10 years | Sourced (same) |
-| Blade | {ac.BLADE_W} x {ac.BLADE_H} m x {ac.BLADE_T * 1000:.2f} mm | Thickness sourced, size estimated |
+| Blade | {ac.BLADE_W} x {ac.BLADE_H} m x {ac.BLADE_T * 1000:.2f} mm | Thickness sourced, size matches SM_PermanentCathode |
 | Rack of {RACK_N}, press gantry 2.8 m wide, brush rolls Ø0.32 m, work height {RZ:.2f} m | | Own design |
 
 Source: Metso case study, "Maintained cathodes ensure refinery's cost-efficiency"

@@ -15,8 +15,9 @@ with dimensions, so the layout and every machine size here are estimates.
   z = 1.60 m. Chains at y = +-0.56.
 - Outfeed: crane pickup zone on the spacing chain, x 23.75 to 28.20,
   45 anodes at 100 mm pitch, lug seat z = 1.60 m. End stop at x = 28.85.
+- Tankhouse link: the crane carries a cell load between this machine and the tankhouse transfer stand AnodeIn at (-12, -8) (tankhouse coordinates, seat z 1.20, electrodes stacked along Y, so this machine's X runs along the tankhouse Y there). See Meshes/Tankhouse/README.md.
 - Reject rack (lug rails, seat z = 1.60) on the -Y side, centred at (15.0, -2.6).
-- Lug span 1.24 m; the crane bale (tankhouse thread) must match.
+- Lug span 1.32 m, same anode as the anode set and the tankhouse cells.
 
 ## Stations
 
@@ -48,26 +49,26 @@ both with local +X along the cylinder axis, so they can be aimed at each other.
 | AP_Infeed_R_Sprocket_Head | (7.00, -0.56, 1.44) |
 | AP_Infeed_R_Sprocket_Tail | (0.00, -0.56, 1.44) |
 | AP_InspectReject | (15.00, 0.00, 0.00) |
-| AP_LugPressCyl_L_Barrel | (12.00, 0.58, 2.45) |
-| AP_LugPressCyl_L_Rod | (12.00, 0.58, 1.85) |
-| AP_LugPressCyl_R_Barrel | (12.00, -0.58, 2.45) |
-| AP_LugPressCyl_R_Rod | (12.00, -0.58, 1.85) |
+| AP_LugPressCyl_L_Barrel | (12.00, 0.60, 2.45) |
+| AP_LugPressCyl_L_Rod | (12.00, 0.60, 1.85) |
+| AP_LugPressCyl_R_Barrel | (12.00, -0.60, 2.45) |
+| AP_LugPressCyl_R_Rod | (12.00, -0.60, 1.85) |
 | AP_LugPressFrame | (12.00, 0.00, 0.00) |
-| AP_LugPressHead_L | (12.00, 0.58, 1.85) |
-| AP_LugPressHead_R | (12.00, -0.58, 1.85) |
-| AP_MillCutter_L | (13.50, 0.58, 1.55) |
-| AP_MillCutter_R | (13.50, -0.58, 1.55) |
+| AP_LugPressHead_L | (12.00, 0.60, 1.85) |
+| AP_LugPressHead_R | (12.00, -0.60, 1.85) |
+| AP_MillCutter_L | (13.50, 0.60, 1.55) |
+| AP_MillCutter_R | (13.50, -0.60, 1.55) |
 | AP_MillFrame | (13.50, 0.00, 0.00) |
-| AP_MillHead_L | (13.50, 0.58, 0.80) |
-| AP_MillHead_R | (13.50, -0.58, 0.80) |
+| AP_MillHead_L | (13.50, 0.60, 0.80) |
+| AP_MillHead_R | (13.50, -0.60, 0.80) |
 | AP_PickupGuides | (23.75, 0.00, 0.00) |
-| AP_PressCyl_Down_Barrel | (11.48, 0.00, 1.18) |
-| AP_PressCyl_Down_Rod | (11.01, 0.00, 1.18) |
-| AP_PressCyl_Up_Barrel | (9.52, 0.00, 1.18) |
-| AP_PressCyl_Up_Rod | (9.99, 0.00, 1.18) |
+| AP_PressCyl_Down_Barrel | (11.48, 0.00, 1.22) |
+| AP_PressCyl_Down_Rod | (11.01, 0.00, 1.22) |
+| AP_PressCyl_Up_Barrel | (9.52, 0.00, 1.22) |
+| AP_PressCyl_Up_Rod | (9.99, 0.00, 1.22) |
 | AP_PressFrame | (10.50, 0.00, 0.00) |
-| AP_PressPlaten_Down | (10.85, 0.00, 1.18) |
-| AP_PressPlaten_Up | (10.15, 0.00, 1.18) |
+| AP_PressPlaten_Down | (10.85, 0.00, 1.22) |
+| AP_PressPlaten_Up | (10.15, 0.00, 1.22) |
 | AP_RejectTongs | (15.00, 0.00, 2.60) |
 | AP_RejectTrolley | (15.00, 0.00, 3.40) |
 | AP_SpacerDogs | (16.00, 0.00, 1.60) |
@@ -103,8 +104,8 @@ The chain mesh is a closed loop with continuous U, like the belt conveyors.
 | Item | Value | Status |
 |---|---|---|
 | Capacity | up to 500 anodes/h | Sourced, Metso brochure (vendor claim) |
-| Anode body | 0.96 x 0.98 x 0.04 m, ~340 kg with lugs | Estimated inside the sourced 1 x 1 x 0.04-0.05 m, 300-380 kg range |
-| Lug span | 1.24 m | Estimated |
+| Anode body | 1.0 x 1.0 x 0.045 m, lugs 0.12 x 0.04 m | Matches ATC_Anode from the anode set. By volume it is ~415 kg, above the sourced 300-380 kg range |
+| Lug span | 1.32 m | Matches ATC_Anode (estimated there) |
 | Electrode pitch | 0.1 m | Sourced (same-type pitch in the cell) |
 | Anodes per cell load | 45 | Inside the sourced 30-50 range; change LOAD in the script |
 | Lug seat height 1.6 m, chains 7 m and 12.5 m, 1.5 m station step | | Own design |
